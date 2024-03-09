@@ -1,0 +1,67 @@
+1. Download Debian iso
+    https://www.debian.org/distrib/netinst
+2. Create VM
+    - New, name on your choise
+    - Type Linux, Version Debian (64-bit)
+    - RAM - 1024 is OK
+    - Create a virtual hard disk now - VDI - Dinabically alocated
+    - folder to save - if you are at school then goinfre
+    - HD size - 30.8 GB
+    - Settings
+        - Storage - Optical Drive - choose your Debian ISO
+        - Network - better to choose Bridged Adaptor for easy overcoming access issues. Read more in doc https://www.nakivo.com/blog/virtualbox-network-setting-guide/
+3. Install Debian on your Machine
+    - Common settings
+        - Start The VM
+        - Install
+        - Choose Language (English)
+        - Choose Country (USA)
+        - hostname - your login + 42
+        - domain name - empty
+        - choose root password
+        - full name for the new user - Name + Surname
+        - username for account - login
+        - choose password for your user
+        - choose time zone
+    - Disk Partitioning
+        - Manual
+        - Choose your created Hard Disk - create an empty part
+        - Create a new partition
+            - Size 500M
+            - Primary
+            - Location - beginning
+            - Mount point - boot
+        - Create a new partition
+            - Size max
+            - Logical
+            - Mount point - Do not mount it
+        - Configure encrypted volumes - Yes
+            - Create encrypted volumes - sda5
+            - Done setting up the partition - Finish - Yes (Erase)
+            - Enter encryption passphrase
+        - Configure the Logical Volume Manager - yes
+        - Create volume group
+            - Name = LVMGroup, Device - sda5_crypt
+        - Create Logical volume: name = root, size = 10G
+        - Create Logical volume: name = swap, size = 2.3G
+        - Create Logical volume: name = home, size = 5G
+        - Create Logical volume: name = var, size = 3G
+        - Create Logical volume: name = srv, size = 3G
+        - Create Logical volume: name = tmp, size = 3G
+        - Create Logical volume: name = var-log, size = 4G
+        - Finish
+        - home: use as Ext4, mount point home
+        - root: use as Ext4, mount point home
+        - srv: use as Ext4, mount point srv
+        - swap: use as swap area
+        - tmp: use as Ext4, mount point tmp
+        - var: use as Ext4, mount point var
+        - var-log: use as Ext4, mount point manually - /var/log
+        - save and write changes to disk
+    - finish, choose mirror country
+    - don't istall anything except for the core system
+    - install GRUB on your device - on dev/sda
+3. In case of su - authification error reset root password: https://www.youtube.com/watch?v=3Hrm3_CFKic&pp=ygUacmVzZXQgcm9vdCBwYXNzd29yZCBkZWJpYW4%3D
+4. Configuration - a great guide https://github.com/mcombeau/Born2beroot/blob/main/guide/configuration_debian.md
+5. WordPress - great guide https://github.com/mcombeau/Born2beroot/blob/main/guide/bonus_debian.md
+6. I decided to install failtoban

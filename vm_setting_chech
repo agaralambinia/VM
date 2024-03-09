@@ -1,0 +1,42 @@
+1. Password restrictions are available via
+    sudo visudo
+2. UFW status available via
+    sudo ufw status verbose
+3. Check SSH status:
+    sudo systemctl status ssh
+4. SSH config
+    /etc/ssh/sshd_config
+5. Connect to vm
+    ssh <login>@localhost -p 4242
+    ssh <login>@127.0.0.1 -p 4242
+6. Password policy in etc/login.defs
+7. Check user settings
+    chage -l <username>
+8. Password restrictions in /etc/security/pwquality.conf
+9. Change hostname via
+    $ sudo hostnamectl set-hostname <new_hostname>
+    $ hostnamectl status
+10. User manipulation
+    $ useradd : creates a new user.
+    $ usermod : changes the user’s parameters: -l for the username, -c for the full name, -g for groups by group ID.
+    $ userdel -r : deletes a user and all associated files.
+    $ id -u : displays user ID.
+    $ users : shows a list of all currently logged in users.
+    $ cat /etc/passwd | cut -d ":" -f 1 : displays a list of all users on the machine.
+    $ cat /etc/passwd | awk -F '{print $1}' : same as above.
+11. Group manipulation
+    $ addgroup : creates a new group.
+    $ gpasswd -a : adds a user to a group.
+    $ gpasswd -d : removes a user from a group.
+    $ groupdel : deletes a group.
+    $ groups : displays the groups of a user.
+    $ id -g : shows a user’s main group ID.
+    $ getent group : displays a list of all users in a group.
+12. Monitoring.sh in /root/
+13. crontab -e for monitoring script reshedule
+14. Check control sum shasum born2beroot.vdi 
+15. vebpage http://127.0.0.1:8080
+16. mariadb mysql -u root -p
+    for prettyfying sql output add \G after query;
+17. to see banned via fail2ban
+    sudo fail2ban-client status sshd

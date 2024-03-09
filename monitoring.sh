@@ -11,7 +11,7 @@ LVMuse=$(lsblk | grep "lvm" | wc -l | awk '{if ($1) {printf("yes");} else printf
 ConnectionsTCP=$(netstat -an | wc -l | awk '{printf("%s ESTABLISHED", $1)}')
 Userlog=$(users | wc -w)
 IP=$(hostname -I)
-MAC=$(ip a | grep "ether")
+MAC=$(ip a | grep "ether" | awk '{printf("%s", $2)}')
 Sudo=$(journalctl _COMM=sudo | grep "COMMAND" | wc -l)
 
 echo "#Architecture:" $architecture
